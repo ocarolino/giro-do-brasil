@@ -21,6 +21,11 @@ export class AppComponent implements OnInit {
       title: 'Noticias',
       url: 'noticias',
       icon: 'paper-plane'
+    },
+    {
+      title: 'Localização',
+      url: 'mapa',
+      icon: 'navigate-circle'
     }
   ];
 
@@ -34,7 +39,9 @@ export class AppComponent implements OnInit {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
+      this.statusBar.backgroundColorByHexString('#000000');
+      this.statusBar.overlaysWebView(true);
       this.splashScreen.hide();
     });
   }

@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'inserir',
     loadChildren: () => import('./usu/inserir/inserir.module').then( m => m.InserirPageModule)
+  },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
   }
 ];
 
