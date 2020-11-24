@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-text color="dark ion-text-center">
+    <h1 class="giro-brand">Giro do Brasil</h1>
+  </ion-text>
+  
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input name="login" type="text" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input name="senha" type="password" [(ngModel)]="senha"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button color="secondary" type="submit" (click)="loginUsuario()" expand="full">
+          Logar <ion-icon slot="end" name="enter-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col>
+        <ion-router-link href="inserir">
+          <ion-button color="secondary" expand="full">
+            Cadastrar <ion-icon slot="end" name="enter-outline"></ion-icon>
+          </ion-button>
+        </ion-router-link>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

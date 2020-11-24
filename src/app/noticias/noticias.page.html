@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Feed de Notícias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="efeitoRefresh($event)" pullingIcon="chevron-down-circle-outline"
+    refreshingSpinner="crescent">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="lista_noticias.length > 0">
+    <ion-card *ngFor="let noticia of lista_noticias">
+      <ion-img src="{{noticia.urlToImage}}">
+      </ion-img>
+      <ion-card-header class="noticia-card-header">
+        <ion-card-subtitle>{{noticia.publishedAt | date: 'dd/MM/yyyy - hh:mm'}}</ion-card-subtitle>
+        <ion-card-title>{{noticia.title}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="noticia-card-content">
+        {{noticia.description}}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="efeitoScrollInfinito($event)">
+      <ion-infinite-scroll-content
+      loadingSpinner="dots"
+      loadingText="Carregando mais notícias">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+  <div *ngIf="lista_noticias.length == 0" class="flex fullheight">
+    <div>
+      <p class="ion-text-center ion-no-margin" style="font-size: 96px;">
+        <ion-icon name="sad" color="medium"></ion-icon>
+      </p>
+
+      <p class="ion-text-center">
+        O servidor de notícias está indisponível no momento.
+      </p>
+    </div>
+  </div>
+</ion-content>
