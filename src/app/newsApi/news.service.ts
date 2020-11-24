@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewsService {
 
-  private chave = "38b14f584606401b8ea15cd840105484";
+  private chave = "albalb";
   private caminhoPadrao = "https://newsapi.org/v2";
   
   constructor(public http:HttpClient) { }
