@@ -20,7 +20,7 @@ export class InserirPage implements OnInit {
   }
 
   insereUsuario() {
-    if (this.nome.trim() || this.email.trim().length == 0 || this.senha.trim().length == 0) {
+    if (this.nome.trim().length == 0 || this.email.trim().length == 0 || this.senha.trim().length == 0) {
       this.mensagem = "Todos os campos são obrigatórios.";
       this.exibeMensagem();
       return;

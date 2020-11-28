@@ -47,4 +47,12 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
+  public passwordType: string = 'password';
+  public passwordIcon: string = 'eye-off';
+
+  esconderMostrarSenha() {
+    console.log("teste");
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
 }

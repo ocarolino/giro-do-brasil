@@ -15,6 +15,10 @@ ion-menu.md ion-content {
   --padding-bottom: 20px;
 }
 
+ion-menu ion-list-header {
+  --color: #ffffff;
+}
+
 ion-menu.md ion-list {
   padding: 20px 0;
 }

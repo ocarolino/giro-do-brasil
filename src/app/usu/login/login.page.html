@@ -8,16 +8,18 @@
   <ion-text color="dark ion-text-center">
     <h1 class="giro-brand">Giro do Brasil</h1>
   </ion-text>
-  
+
   <form>
     <ion-item lines="full">
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input name="login" type="email" [(ngModel)]="email" (required)="true"></ion-input>
+      <ion-input name="login" type="email" [(ngModel)]="email" required="true"></ion-input>
     </ion-item>
+
     <ion-item lines="full">
       <ion-label position="floating">Senha</ion-label>
       <ion-input name="senha" type="password" [(ngModel)]="senha" required="true"></ion-input>
     </ion-item>
+
     <ion-row>
       <ion-col>
         <ion-button color="secondary" type="submit" (click)="loginUsuario()" expand="full">
