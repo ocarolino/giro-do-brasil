@@ -1,18 +1,46 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacaoService {
+  public usuarioDados:any;
+  public nome:string = "";
+  public email:string = "";
 
-  constructor(public ngFireAuth:AngularFireAuth) { }
+  constructor(public ngFireAuth:AngularFireAuth) {
+    this.usuarioDados = null;
+
+    this.ngFireAuth.authState.subscribe(user => {
+      if (user) {
+        this.usuarioDados = user;
+        this.nome = this.usuarioDados.displayName;
+        this.email = this.usuarioDados.email;    
+      } else {
+        this.usuarioDados = null;
+      }
+    });
+  }
 
   loginNoFireBase(email:string, password:string) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
   }
 
+  logoffNoFireBase() {
+    return this.ngFireAuth.signOut();
+  }
+
   insereNoFirebase(email:string, password:string) {
     return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+  }
+
+  async atualizaNomeFirebase(nome:string) {
+    (await this.ngFireAuth.currentUser).updateProfile({displayName: nome}).then(() => {
+      this.nome = nome;
+    }).catch((err) => { 
+      console.log('Erro ao atualizar nome do usuário: ' + err);
+    });
   }
 }

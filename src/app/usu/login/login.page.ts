@@ -18,8 +18,14 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-
+  
   loginUsuario() {
+    if (this.email.trim().length == 0 || this.senha.trim().length == 0) {
+      this.mensagem = "O usuário e senha são obrigatórios";
+      this.exibeMensagem();
+      return;
+    }
+
     this.autenticacaoService.loginNoFireBase(this.email, this.senha).then(
       (res) => {
         this.router.navigate(['home']);

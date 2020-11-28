@@ -1,5 +1,11 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+    <ion-button (click)="retornarLogin()">
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
     <ion-title>Cadastro</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,8 +21,12 @@
 
   <form>
     <ion-item lines="full">
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input name="nome" type="text" [(ngModel)]="nome"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input name="login" type="text" [(ngModel)]="email"></ion-input>
+      <ion-input name="login" type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Senha</ion-label>

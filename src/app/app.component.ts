@@ -4,6 +4,9 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { AutenticacaoService } from './usuario/autenticacao.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -20,7 +23,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Noticias',
       url: 'noticias',
-      icon: 'paper-plane'
+      icon: 'newspaper-outline'
     },
     {
       title: 'Localização',
@@ -29,10 +32,15 @@ export class AppComponent implements OnInit {
     }
   ];
 
+  public nome:string = "";
+  public email:string = "";
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private autenticacaoService:AutenticacaoService,
+    public router:Router
   ) {
     this.initializeApp();
   }
@@ -41,7 +49,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleLightContent();
       this.statusBar.backgroundColorByHexString('#000000');
-      this.statusBar.overlaysWebView(true);
+      this.statusBar.overlaysWebView(false);
       this.splashScreen.hide();
     });
   }
@@ -51,5 +59,18 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  deslogarUsuario() {
+    this.autenticacaoService.logoffNoFireBase();
+    this.nome = this.autenticacaoService.nome;
+    this.email = this.autenticacaoService.email;
+    this.router.navigate(['login']);
+  }
+
+  atualizarMenu() {
+    console.log('abriu o menu');
+    this.nome = this.autenticacaoService.nome;
+    this.email = this.autenticacaoService.email;
   }
 }

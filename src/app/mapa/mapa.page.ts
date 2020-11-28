@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Map, tileLayer, marker } from 'leaflet';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ToastController } from '@ionic/angular';
   
 @Component({
   selector: 'app-mapa',
@@ -9,10 +10,11 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 })
 export class MapaPage implements OnInit {
 
-  constructor(private geoLocation: Geolocation) { }
+  constructor(private geoLocation: Geolocation, private toastController:ToastController) { }
 
-  map:Map;
-  newMarker:any;
+  private map:Map;
+  private newMarker:any;
+  private mensagem:string;
   
   ngOnInit() {
   }
@@ -42,8 +44,18 @@ export class MapaPage implements OnInit {
       }
     ).catch(
       (error) => {
-        console.log("Erro ao capturar a localização", error);
+        this.mensagem = "Erro ao capturar a localização";
+        this.exibeMensagem();
       }
     );
+  }
+
+  async exibeMensagem() {
+    const toast = await this.toastController.create({
+      message: this.mensagem,
+      duration: 2000
+    });
+
+    toast.present();
   }
 }

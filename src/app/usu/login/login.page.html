@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,25 +12,34 @@
   <form>
     <ion-item lines="full">
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input name="login" type="text" [(ngModel)]="email"></ion-input>
+      <ion-input name="login" type="email" [(ngModel)]="email" (required)="true"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Senha</ion-label>
-      <ion-input name="senha" type="password" [(ngModel)]="senha"></ion-input>
+      <ion-input name="senha" type="password" [(ngModel)]="senha" required="true"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
         <ion-button color="secondary" type="submit" (click)="loginUsuario()" expand="full">
-          Logar <ion-icon slot="end" name="enter-outline"></ion-icon>
+          Logar
         </ion-button>
       </ion-col>
+    </ion-row>
 
+    <ion-row>
       <ion-col>
+        <p class="ion-text-center">Não tem uma conta?</p>
         <ion-router-link href="inserir">
-          <ion-button color="secondary" expand="full">
-            Cadastrar <ion-icon slot="end" name="enter-outline"></ion-icon>
+          <ion-button color="danger" expand="full">
+            Criar uma conta
           </ion-button>
         </ion-router-link>
+
+        <p class="ion-text-center">
+          <ion-text color="medium">
+            <small>Desenvolvido por Matheus Carolino</small>
+          </ion-text>
+        </p>
       </ion-col>
     </ion-row>
   </form>

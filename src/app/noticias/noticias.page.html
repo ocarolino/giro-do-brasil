@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -14,6 +14,20 @@
   </ion-refresher>
 
   <div *ngIf="lista_noticias.length > 0">
+    <ion-item>
+      <ion-label>Tema</ion-label>
+      <ion-select placeholder="Selecione um" [(ngModel)]="categoria" (ionChange)="alterarTema()" okText="Confirmar" cancelText="Cancelar">
+        <ion-select-option [value]="0">Destaques</ion-select-option>
+        <ion-select-option [value]="1">Negócios</ion-select-option>        
+        <ion-select-option [value]="2">Entretenimento</ion-select-option>        
+        <ion-select-option [value]="3">Saúde</ion-select-option>        
+        <ion-select-option [value]="4">Ciência</ion-select-option>
+        <ion-select-option [value]="5">Esportes</ion-select-option>
+        <ion-select-option [value]="6">Tecnologia</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
     <ion-card *ngFor="let noticia of lista_noticias">
       <ion-img src="{{noticia.urlToImage}}">
       </ion-img>
@@ -28,9 +42,7 @@
     </ion-card>
 
     <ion-infinite-scroll threshold="100px" (ionInfinite)="efeitoScrollInfinito($event)">
-      <ion-infinite-scroll-content
-      loadingSpinner="dots"
-      loadingText="Carregando mais notícias">
+      <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Carregando mais notícias">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </div>

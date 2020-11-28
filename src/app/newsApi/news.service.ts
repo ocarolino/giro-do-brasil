@@ -6,14 +6,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewsService {
 
-  private chave = "albalb";
+  private chave = "38b14f584606401b8ea15cd840105484";
   private caminhoPadrao = "https://newsapi.org/v2";
   
   constructor(public http:HttpClient) { }
 
-  public getTopHeadlines(page:number = 1, country:string = "br")
+  public getTopHeadlines(page:number = 1, country:string = "br", category:string = "")
   {
     let noticias=`${this.caminhoPadrao}/top-headlines?country=${country}&apiKey=${this.chave}&page=${page}`;
+
+    if (category.length > 0) {
+      noticias += `&category=${category}`;
+    }
+
     return this.http.get(noticias);
   }
 }
