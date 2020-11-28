@@ -15,9 +15,15 @@
       <ion-input name="login" type="email" [(ngModel)]="email" required="true"></ion-input>
     </ion-item>
 
-    <ion-item lines="full">
+    <ion-item lines="full" slot="start">
       <ion-label position="floating">Senha</ion-label>
-      <ion-input name="senha" type="password" [(ngModel)]="senha" required="true"></ion-input>
+      <ion-input name="senha" [type]="passwordType" [(ngModel)]="senha" required="true"></ion-input>
+
+      <ion-thumbnail slot="end" style="width: -moz-fit-content; width: fit-content;">
+        <p class="ion-text-right" style="font-size: 26px;">
+          <ion-icon slot="start" [name]="passwordIcon" (click)="esconderMostrarSenha()"></ion-icon>
+        </p>
+      </ion-thumbnail>
     </ion-item>
 
     <ion-row>

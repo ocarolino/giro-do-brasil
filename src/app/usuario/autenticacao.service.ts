@@ -9,6 +9,7 @@ export class AutenticacaoService {
   public usuarioDados:any;
   public nome:string = "";
   public email:string = "";
+  public logado:boolean = false;
 
   constructor(public ngFireAuth:AngularFireAuth) {
     this.usuarioDados = null;
@@ -17,9 +18,11 @@ export class AutenticacaoService {
       if (user) {
         this.usuarioDados = user;
         this.nome = this.usuarioDados.displayName;
-        this.email = this.usuarioDados.email;    
+        this.email = this.usuarioDados.email;
+        this.logado = true; 
       } else {
         this.usuarioDados = null;
+        this.logado = false;
       }
     });
   }
@@ -42,5 +45,9 @@ export class AutenticacaoService {
     }).catch((err) => { 
       console.log('Erro ao atualizar nome do usuário: ' + err);
     });
+  }
+
+  get estaLogado() {
+    return this.logado;
   }
 }
